@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+.new-content {
+    width: 25%;
+    float: left;
+}
+
+.main-content {
+    width: 75%;
+    float: left;
+}
+
+/* .image-container {
+    width: 500px;
+} */
