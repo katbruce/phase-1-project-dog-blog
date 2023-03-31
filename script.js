@@ -16,6 +16,6 @@ function generateRandom() {
 }
 
 function randomImg(image) {
-    newDogImg = document.querySelector('#new-dog-image')
+    newDogImg = document.querySelector('#new-image-container')
     newDogImg.src = image
 }

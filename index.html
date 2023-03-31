@@ -11,7 +11,7 @@
 <body>
     <h1>Dog Blog!!</h1>
     <h3>Scroll to read great dog content, and feel free to contribute a post of your own.</h3>
-    <div> 
+    <div class="new-content"> 
         <form id="new-post-form">
             <label for="new-content">Dog Content:</label><br>
             <textarea rows = "5" cols = "60" id="new-content" name="new-content">
@@ -19,9 +19,12 @@
              </textarea><br>
             <label for="new-image-button">Use our dog image generator:</label><br>
             <input type="button" id="new-image-button" name="new-image-button" value="Click here!"><br>
-            <img src="https://images.dog.ceo/breeds/beagle/n02088364_12920.jpg" alt="Randomly generated dog image." id="new-dog-image"><br>
+            <img src="https://images.dog.ceo/breeds/beagle/n02088364_12920.jpg" alt="Randomly generated dog image." id="new-image-container" class="image-container"><br>
             <input type="submit" id="submit">
         </form>
+    </div>
+    <div class="main-content">
+        
     </div>
 </body>
 </html>
