@@ -1,23 +1,47 @@
 * {
     box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.title {
-    float: center;
+nav {
+    width: 100%;
+    background-color: lightblue;
+    text-align: center;
     position: fixed; /*sticky title-nav bar*/
+    top: 0;
+    padding: auto;
 
 }
+.title {
+    top: 0;
+    font-size: 30px;
+}
+
 .new-content {
     width: 25%;
-    float: left;
+    padding: 2%;
+    float: right;
     position: fixed;
 }
-
-.main-content {
-    width: 75%;
-    float: left;
+img{
+    width: 100%;
+    height: fit-content;
 }
-
+.main-content {
+    
+    width: 70%;
+    float: right;
+    overflow: auto;
+    
+}
+body
+{
+    height: 100%;
+    padding-top: 100px;
+    overflow: auto;
+    top: 60px;
+    background-color: lightcyan;
+}
 /* .image-container {
     width: 500px;
 } */
