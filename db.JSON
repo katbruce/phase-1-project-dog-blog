@@ -1,0 +1,10 @@
+{
+    "posts": [
+      {
+        "id": 1,
+        "name": "Woody",
+        "image": "https://images.dog.ceo/breeds/terrier-tibetan/n02097474_756.jpg",
+        "likes": 8
+      }
+    ]
+  }

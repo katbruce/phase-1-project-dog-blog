@@ -1,0 +1,16 @@
+{
+  "name": "phase-1-project-dog-blog",
+  "version": "1.0.0",
+  "description": "TODO: update this to accurately explain our phase 1 project and edit using markdown syntax to look nice and professional",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "validator": "^13.9.0"
+  }
+}
