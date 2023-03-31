@@ -2,9 +2,15 @@
     box-sizing: border-box;
 }
 
+.title {
+    float: center;
+    position: fixed; /*sticky title-nav bar*/
+
+}
 .new-content {
     width: 25%;
     float: left;
+    position: fixed;
 }
 
 .main-content {
