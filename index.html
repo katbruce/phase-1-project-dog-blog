@@ -4,9 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" /> 
+    <script type="text/javascript" src="script.js" defer></script>
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>Dog Blog!!</h1>
+    <h3>Scroll to read great dog content, and feel free to contribute a post of your own.</h3>
+    <div> 
+        <form id="new-post-form">
+            <label for="new-content">Dog Content:</label><br>
+            <textarea rows = "5" cols = "60" id="new-content" name="new-content">
+                Enter details here...
+             </textarea><br>
+            <label for="new-image-button">Use our dog image generator:</label><br>
+            <input type="button" id="new-image-button" name="new-image-button" value="Click here!"><br>
+            <img src="https://images.dog.ceo/breeds/beagle/n02088364_12920.jpg" alt="Randomly generated dog image." id="new-dog-image"><br>
+            <input type="submit" id="submit">
+        </form>
+    </div>
 </body>
 </html>
