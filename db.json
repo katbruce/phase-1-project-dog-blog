@@ -1,51 +1,51 @@
 {
-    "posts": [
-      {
-        "id": 1,
-        "name": "Woody",
-        "image": "https://images.dog.ceo/breeds/terrier-tibetan/n02097474_756.jpg",
-        "content": "Terriers are the best because they are super smart, active, and get along with other dogs.",
-        "likes": 8,
-        "comments": [
-            {
-                "id": 1,
-                "content": "Cute pup."
-            },
-            {
-                "id": 2,
-                "content": "Thanks for sharing!"
-            }
-        ]
-      },
-      {
-        "id": 2,
-        "name": "Martin",
-        "image": "https://images.dog.ceo/breeds/setter-english/n02100735_7827.jpg",
-        "content": "I love this absolute chiller. Adopted him from a shelter and he's basically self trained. 100% best dog ever.",
-        "likes": 14,
-        "comments": [
-            {
-                "id": 1,
-                "content": "YOO, chill dogs rule."
-            }
-        ]
-      },
-      {
-        "id": 3,
-        "name": "Wasabi",
-        "image": "https://images.dog.ceo/breeds/spitz-japanese/tofu.jpg",
-        "content": "Wasabi got her name from her love of sushi. She's had so much that at this point, she'll turn her nose up to anything thats not sashimi grade.",
-        "likes": 8,
-        "comments": [
-            {
-                "id": 1,
-                "content": "Has she been to Nobu??"
-            },
-            {
-                "id": 2,
-                "content": "I'm not sure dogs should have sushi..."
-            }
-        ]
-      }
-    ]
-  }
+  "posts": [
+    {
+      "id": 1,
+      "name": "Woody",
+      "image": "https://images.dog.ceo/breeds/terrier-tibetan/n02097474_756.jpg",
+      "content": "Terriers are the best because they are super smart, active, and get along with other dogs.",
+      "likes": 14,
+      "comments": [
+        {
+          "id": 1,
+          "content": "Cute pup."
+        },
+        {
+          "id": 2,
+          "content": "Thanks for sharing!"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Martin",
+      "image": "https://images.dog.ceo/breeds/setter-english/n02100735_7827.jpg",
+      "content": "I love this absolute chiller. Adopted him from a shelter and he's basically self trained. 100% best dog ever.",
+      "likes": 14,
+      "comments": [
+        {
+          "id": 1,
+          "content": "YOO, chill dogs rule."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Wasabi",
+      "image": "https://images.dog.ceo/breeds/spitz-japanese/tofu.jpg",
+      "content": "Wasabi got her name from her love of sushi. She's had so much that at this point, she'll turn her nose up to anything thats not sashimi grade.",
+      "likes": 8,
+      "comments": [
+        {
+          "id": 1,
+          "content": "Has she been to Nobu??"
+        },
+        {
+          "id": 2,
+          "content": "I'm not sure dogs should have sushi..."
+        }
+      ]
+    }
+  ]
+}

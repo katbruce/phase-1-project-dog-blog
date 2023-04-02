@@ -9,7 +9,6 @@ function init () {
 
 function imageButton () {
     document.querySelector('#new-image-button').addEventListener('click', generateRandom)
-    console.log('button clicked')
 }
 
 function generateRandom() {
@@ -40,32 +39,49 @@ function renderPost(post){
     let newImg = document.createElement('img');
     let likeBtn = document.createElement('button');
     let newName = document.createElement('h3');
-    let numLikes = document.createElement('p')
-        
-
+    let numLikes = document.createElement('p');
+    
+    newPost.className = 'blog-post';
+    newPost.id = `post-${post.id}`
     newContent.textContent = post.content;
     newImg.src = post.image;
     newImg.alt = "dog image";
     newName = post.name;
 
     let nLikes = parseInt(post.likes);
+    numLikes.className = 'like-count'
     numLikes.textContent = nLikes;
-    likeBtn.textContent = ("♡")//♥
-    likeBtn.addEventListener("click", upvote(nLikes));
+    likeBtn.textContent = ("♡");//♥
+    likeBtn.addEventListener("click", upvote);
     
-    
-
-    newPost.append(newName);
-    newPost.append(newImg);
-    newPost.append(newContent);
-    newPost.append(likeBtn);
-    newPost.append(numLikes);
+    newPost.append(newName, newImg, newContent, likeBtn, numLikes);
     allPosts.append(newPost);
+
+    // newPost.append(newName);
+    // newPost.append(newImg);
+    // newPost.append(newContent);
+    // newPost.append(likeBtn);
+    // newPost.append(numLikes);
+    // allPosts.append(newPost);
     //need to add comments and create comment form
 
 }
 
 //updating number of likes
-function upvote(likes){
-    
+function upvote(e){
+    postId = parseInt(e.target.parentNode.id.split('-')[1]);
+    numLikes = parseInt(e.target.nextElementSibling.textContent);
+    numLikes++
+    let blogObj = {
+        id: postId,
+        likes: numLikes
+    };
+    console.log(blogObj)
+    fetch (`http://localhost:3000/posts/${postId}`, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(blogObj)
+    })
+        .then(res => res.json())
+        .then(data => e.target.nextElementSibling.textContent = data.likes)
 }
