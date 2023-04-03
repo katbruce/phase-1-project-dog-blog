@@ -1,6 +1,6 @@
-const allPosts = document.querySelector("#blog-posts");
-let latestImgId = '';
-const newPostForm = document.querySelector("#new-post-form")
+const allPosts = document.querySelector("#blog-posts"); //can maybe declare in the function
+let latestImgId;
+
 document.addEventListener('DOMContentLoaded', init())
 
 function init () {
@@ -20,8 +20,11 @@ function generateRandom() {
 }
 
 function randomImg(image) {
-    newDogImg = document.querySelector('#new-image-container')
+    let newDogImg = document.querySelector('#new-image-container')
+    let postSubmit = document.querySelector('#submit-post')
+    newDogImg.style.display = 'inherit'
     newDogImg.src = image
+    postSubmit.style.display = 'inherit'
 }
 
 function fetchData(){
@@ -39,25 +42,29 @@ function fetchData(){
 
 //render each post
 function renderPost(post){
+    latestImgId = post.id;
     let newPost = document.createElement('div')
     let newContent = document.createElement('p');
-    let newImg = document.createElement('img');
+    let newImg = document.createElement('div');
     let newName = document.createElement('h3');
     let postLikes = document.createElement('div');
     let postComments = document.createElement('div')
-    
-    latestImgId = post.id;
 
     newPost.id = `post-${post.id}`
+    newImg.innerHTML = `
+        <div class="img-overlay"></div>
+        <img src="${post.image}" alt="Image of a cute dog." class="blog-post-image">
+    `
+    newImg.className = 'image-container'
     newContent.textContent = post.content;
-    newImg.src = post.image;
-    newImg.alt = "Image of a cute dog.";
     newName = post.name;
     postLikes.id = `post-${post.id}-likes`
     postComments.id = `post-${post.id}-comments`
     
+    newImg.addEventListener('mouseenter', displayBreed)
+    newImg.addEventListener('mouseleave', displayBreedOff)
     newPost.append(newName, newImg, newContent, postLikes, postComments);
-    allPosts.append(newPost);
+    allPosts.prepend(newPost);
 }
 
 function renderLikes (postObj) {
@@ -81,8 +88,6 @@ function fetchComments () {
             renderComments(comment)
         })
     })
-    //add event listener comment form
-
 }
 
 function renderComments(commentObj){
@@ -99,7 +104,7 @@ function renderCommentForm(postObj){
     commentForm.className = 'new-comment-form'
     commentForm.innerHTML = `
         <input type="text" value="Add comment...">
-        <input type="submit" id="submit">
+        <input type="submit" id="submit-comment">
     `
     commentForm.addEventListener('submit', addComment)
     currentPost.append(commentForm)
@@ -145,27 +150,43 @@ function addComment(e){
 }
 
 function createNewPost(){
+    const newPostForm = document.querySelector("#new-post-form")
     newPostForm.addEventListener("submit", (e)=>{
         e.preventDefault();
         let newName = document.querySelector("#new-dog-name").value;
         let newPostImg = document.querySelector("#new-image-container").src;
         let newPostContent = document.querySelector("#new-content").value;
+        let newDogImg = document.querySelector('#new-image-container')
+        let postSubmit = document.querySelector('#submit-post')
+
         const newPostObj = {id: ++latestImgId, name: newName, image: newPostImg, content: newPostContent, likes: 0}
-        fetch('http://localhost:3000/posts', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(newPostObj)
-        })
-        .then((res)=> res.json())
-        .then((data) => {
-            renderPost(data)
-            renderLikes(data)
-            renderCommentForm(data)
+        //check to see that form is filled out
+        newPostObj.name.length == 0 ? alert('Please fill out all form fields.') : renderNewPost(newPostObj)
+        newPostForm.reset(); 
 
-        })
-        fetchComments()
-        DogImg.src = "https://images.dog.ceo/breeds/beagle/n02088364_12920.jpg";
-        newPostForm.reset();    
+        newDogImg.style.display = 'none'
+        postSubmit.style.display = 'none'
     })
-    }
+}
 
+function renderNewPost(newPost) {
+    fetch('http://localhost:3000/posts', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newPost)
+    })
+    .then((res)=> res.json())
+    .then((data) => {
+        renderPost(data)
+        renderLikes(data)
+        renderCommentForm(data)
+    })
+}
+
+function displayBreed(e) {
+    e.target.querySelector('.img-overlay').style.display = 'inherit'
+}
+
+function displayBreedOff(e) {
+    e.target.querySelector('.img-overlay').style.display = 'none'
+}

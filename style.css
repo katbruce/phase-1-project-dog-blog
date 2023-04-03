@@ -123,6 +123,9 @@ nav ul {
 .container{
     margin-top: 15%;
     width: 100%;
+
+    border-radius: 3%;
+
     display: grid;
     grid-template-columns: 25% auto auto auto;
     column-gap: 60px;
@@ -137,9 +140,30 @@ nav ul {
     background-color: #55868C;
     border-radius: 30px;
     box-shadow: 5px #0C120C;
+
     height: fit-content;
     max-width: 25%;
 }
+
+.image-container{
+    position: relative;
+}
+
+.img-overlay {
+    display: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 3%;
+    background: gray;
+    opacity: .75;
+    position: absolute;
+    z-index: 9;
+}
+
+#new-image-container{
+    display: none;
+}
+
 
 .main-content {
     grid-column-start: 3;
@@ -148,4 +172,21 @@ nav ul {
     padding: 12 px;
     float: right;
     overflow: auto;
-} 
+
+    
+}
+body
+{
+    height: 100%;
+    padding-top: 100px;
+    overflow: auto;
+    top: 60px;
+    background-color: lightcyan;
+}
+
+#submit-post {
+    display: none;
+}
+
+
+
