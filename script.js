@@ -184,9 +184,18 @@ function renderNewPost(newPost) {
 }
 
 function displayBreed(e) {
-    e.target.querySelector('.img-overlay').style.display = 'inherit'
+    let overlay = e.target.querySelector('.img-overlay')
+    overlay.style.display = 'inherit'
+    overlay.textContent = getBreed(e)
 }
 
 function displayBreedOff(e) {
     e.target.querySelector('.img-overlay').style.display = 'none'
+}
+
+function getBreed(event) {
+    breedName = event.target.querySelector('.blog-post-image').src.split('/')[4]
+    let breedArr = breedName.split('-')
+    breedArr.length !== 1 ? breedArr.reverse() : breedArr
+    return breedArr.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
 }
