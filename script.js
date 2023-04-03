@@ -1,10 +1,12 @@
 const allPosts = document.querySelector("#blog-posts");
-
+let latestImgId = '';
+const newPostForm = document.querySelector("#new-post-form")
 document.addEventListener('DOMContentLoaded', init())
 
 function init () {
     fetchData();
     imageButton()
+    createNewPost();
 }
 
 function imageButton () {
@@ -42,6 +44,8 @@ function renderPost(post){
     let numLikes = document.createElement('p');
     let postComments = document.createElement('div')
     
+    latestImgId = post.id;
+
     newPost.id = `post-${post.id}`
     newContent.textContent = post.content;
     newImg.src = post.image;
@@ -75,6 +79,8 @@ function renderComments(postData){
         newComment.textContent = comment.content
         commentBlock.append(newComment, space)
     })
+    //add event listener comment form
+
 }
 
 function renderCommentForm(postData){
@@ -119,8 +125,27 @@ function addComment(e){
 
     //not sure what url to post to
     // fetch (`http://localhost:3000/posts/${postId}`, {
-    //     method: 'POST',
-    //     headers: {'Content-Type': 'application/json'},
-    //     body: JSON.stringify(blogObj)
-    // })
+    //      method: 'POST',
+    //      headers: {'Content-Type': 'application/json'},
+    //      body: JSON.stringify(newCommentObj)
+    //  })
+    //  .then(renderComments);
 }
+
+function createNewPost(){
+    newPostForm.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        let newName = document.querySelector("#new-dog-name").value;
+        let newPostImg = document.querySelector("#new-image-container").src;
+        let newPostContent = document.querySelector("#new-content").value;
+        const newPostObj = {id: ++latestImgId, name: newName, image: newPostImg, content: newPostContent, likes: 0, comments: []}
+        fetch('http://localhost:3000/posts', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(newPostObj)
+        })
+        .then(renderPost(newPostObj));
+        newDogImg.src = "https://images.dog.ceo/breeds/beagle/n02088364_12920.jpg";
+        newPostForm.reset();    
+    }
+    )}
