@@ -150,14 +150,22 @@ function createNewPost(){
         let newName = document.querySelector("#new-dog-name").value;
         let newPostImg = document.querySelector("#new-image-container").src;
         let newPostContent = document.querySelector("#new-content").value;
-        const newPostObj = {id: ++latestImgId, name: newName, image: newPostImg, content: newPostContent, likes: 0, comments: []}
+        const newPostObj = {id: ++latestImgId, name: newName, image: newPostImg, content: newPostContent, likes: 0}
         fetch('http://localhost:3000/posts', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(newPostObj)
         })
-        .then(renderPost(newPostObj));
-        newDogImg.src = "https://images.dog.ceo/breeds/beagle/n02088364_12920.jpg";
+        .then((res)=> res.json())
+        .then((data) => {
+            renderPost(data)
+            renderLikes(data)
+            renderCommentForm(data)
+
+        })
+        fetchComments()
+        DogImg.src = "https://images.dog.ceo/breeds/beagle/n02088364_12920.jpg";
         newPostForm.reset();    
+    })
     }
-    )}
+
