@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', init())
 
 function init () {
     fetchData();
-    imageButton()
+    imageButton();
 }
 
 function imageButton () {
@@ -28,7 +28,10 @@ function fetchData(){
     .then((data) => {
         data.forEach((post) => {
             renderPost(post)
+            renderLikes(post)
+            renderCommentForm(post)
         })
+        fetchComments()
     })
 }
 
@@ -37,9 +40,8 @@ function renderPost(post){
     let newPost = document.createElement('div')
     let newContent = document.createElement('p');
     let newImg = document.createElement('img');
-    let likeBtn = document.createElement('button');
     let newName = document.createElement('h3');
-    let numLikes = document.createElement('p');
+    let postLikes = document.createElement('div');
     let postComments = document.createElement('div')
     
     newPost.id = `post-${post.id}`
@@ -47,38 +49,46 @@ function renderPost(post){
     newImg.src = post.image;
     newImg.alt = "Image of a cute dog.";
     newName = post.name;
+    postLikes.id = `post-${post.id}-likes`
     postComments.id = `post-${post.id}-comments`
+    
+    newPost.append(newName, newImg, newContent, postLikes, postComments);
+    allPosts.append(newPost);
+}
 
-    //could potentially separate this out
-    let nLikes = parseInt(post.likes);
+function renderLikes (postObj) {
+    let likesBlock = document.querySelector(`#post-${postObj.id}-likes`);
+    let numLikes =  document.createElement('span');
+    let likeBtn = document.createElement('button');
+    let nLikes = parseInt(postObj.likes);
     numLikes.className = 'like-count'
     numLikes.textContent = nLikes;
     likeBtn.textContent = ("♡");//♥
     likeBtn.addEventListener("click", upvote);
-    
-    newPost.append(newName, newImg, newContent, likeBtn, numLikes, postComments);
-    allPosts.append(newPost);
 
-    //write function to populate comments
-    renderComments(post)
-
-    //write function to render comment form
-    renderCommentForm(post)
+    likesBlock.append(numLikes, likeBtn)
 }
 
-function renderComments(postData){
-    let commentBlock = document.querySelector(`#post-${postData.id}-comments`)
-
-    postData.comments.forEach(comment => {
-        let newComment = document.createElement('span')
-        let space = document.createElement('br')
-        newComment.textContent = comment.content
-        commentBlock.append(newComment, space)
+function fetchComments () {
+    fetch('http://localhost:3000/comments')
+    .then((res)=> res.json())
+    .then((data) => {
+        data.forEach((comment) => {
+            renderComments(comment)
+        })
     })
 }
 
-function renderCommentForm(postData){
-    let currentPost = document.querySelector(`#post-${postData.id}`)
+function renderComments(commentObj){
+    let commentBlock = document.getElementById(`post-${commentObj.imageId}-comments`)
+    let newComment = document.createElement('span')
+    let space = document.createElement('br')
+    newComment.textContent = commentObj.content
+    commentBlock.append(newComment, space)
+}
+
+function renderCommentForm(postObj){
+    let currentPost = document.querySelector(`#post-${postObj.id}`)
     let commentForm = document.createElement('form')
     commentForm.className = 'new-comment-form'
     commentForm.innerHTML = `
@@ -92,7 +102,7 @@ function renderCommentForm(postData){
 //updating number of likes
 function upvote(e){
     let postId = parseInt(e.target.parentNode.id.split('-')[1]);
-    let numLikes = parseInt(e.target.nextElementSibling.textContent);
+    let numLikes = parseInt(e.target.previousElementSibling.textContent);
     numLikes++
     let blogObj = {
         id: postId,
@@ -104,7 +114,7 @@ function upvote(e){
         body: JSON.stringify(blogObj)
     })
         .then(res => res.json())
-        .then(data => e.target.nextElementSibling.textContent = data.likes)
+        .then(data => e.target.previousElementSibling.textContent = data.likes)
 }
 
 function addComment(e){
@@ -113,14 +123,17 @@ function addComment(e){
     let newComment = document.createElement('span')
     newComment.textContent = e.target[0].value
     let newCommentObj = {
-        id: postId,
+        imageId: postId,
         content: newComment.textContent
     }
 
-    //not sure what url to post to
-    // fetch (`http://localhost:3000/posts/${postId}`, {
-    //     method: 'POST',
-    //     headers: {'Content-Type': 'application/json'},
-    //     body: JSON.stringify(blogObj)
-    // })
+    fetch (`http://localhost:3000/comments`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newCommentObj)
+    })
+    .then((res)=> res.json())
+    .then(data => renderComments(data))
+
+    e.target.reset()
 }
