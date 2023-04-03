@@ -124,23 +124,25 @@ nav ul {
     margin-top: 15%;
     width: 100%;
     display: grid;
-    grid-template-columns: 25% auto auto;
+    grid-template-columns: 25% auto auto auto;
     column-gap: 60px;
     row-gap: 60 px;
 }
 
 .new-content {
-    padding: 20px;
-    grid-column: 1;
+    padding: 10px;
+    grid-column-start: 1;
+    grid-column-end: 1;
     position: fixed;
     background-color: #55868C;
     border-radius: 30px;
     box-shadow: 5px #0C120C;
-    height: fit-content
+    height: fit-content;
+    max-width: 25%;
 }
 
 .main-content {
-    grid-column-start: 2;
+    grid-column-start: 3;
     grid-row-start: 1;
     width: 60%;
     padding: 12 px;
