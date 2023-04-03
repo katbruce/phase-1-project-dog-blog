@@ -30,6 +30,8 @@ img{
 .main-content {
     
     width: 70%;
+    padding: 12 px;
+    
     float: right;
     overflow: auto;
     
@@ -41,6 +43,9 @@ body
     overflow: auto;
     top: 60px;
     background-color: lightcyan;
+}
+img {
+    border-radius: 3%;
 }
 /* .image-container {
     width: 500px;
