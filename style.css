@@ -33,6 +33,7 @@ nav {
     position: fixed; /*sticky title-nav bar*/
     top: 0;
     padding: auto;
+    z-index: 10;
 
 }
 
