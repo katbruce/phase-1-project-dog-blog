@@ -25,7 +25,27 @@ nav {
 }
 img{
     width: 100%;
+    border-radius: 3%;
     height: fit-content;
+}
+
+.image-container{
+    position: relative;
+}
+
+.img-overlay {
+    display: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 3%;
+    background: gray;
+    opacity: .75;
+    position: absolute;
+    z-index: 9;
+}
+
+#new-image-container{
+    display: none;
 }
 .main-content {
     
@@ -44,9 +64,7 @@ body
     top: 60px;
     background-color: lightcyan;
 }
-img {
-    border-radius: 3%;
+
+#submit-post {
+    display: none;
 }
-/* .image-container {
-    width: 500px;
-} */
