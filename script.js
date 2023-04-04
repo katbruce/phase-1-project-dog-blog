@@ -106,6 +106,7 @@ function renderCommentForm(postObj){
     let currentPost = document.querySelector(`#post-${postObj.id}`)
     let commentForm = document.createElement('form')
     commentForm.className = 'new-comment-form'
+    //is this a dangerous use of innerHTML?
     commentForm.innerHTML = `
         <input type="text" value="Add comment...">
         <input type="submit" id="submit-comment">
@@ -228,3 +229,26 @@ function darkMode(){
         }
        
 })}
+
+//Decodes the JWT (JSON Web Token)
+
+function decodeJwtResponse(data){
+    console.log(parseJwt(data))
+}
+
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+}
+
+//Show blog post form after sign-in
+
+function signIn () {
+    console.log('function ran')
+    document.querySelector('#new-post-form').setAttribute("hidden", "")
+}
