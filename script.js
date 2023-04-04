@@ -20,11 +20,14 @@ function generateRandom() {
 }
 
 function randomImg(image) {
-    let newDogImg = document.querySelector('#new-image-container')
+    let newDogImg = document.querySelector('#new-image')
     let postSubmit = document.querySelector('#submit-post')
+    let imgOverlay = document.querySelector('#new-image-container')
     newDogImg.style.display = 'inherit'
     newDogImg.src = image
     postSubmit.style.display = 'inherit'
+    imgOverlay.addEventListener('mouseenter', displayBreed)
+    imgOverlay.addEventListener('mouseleave', displayBreedOff)
 }
 
 function fetchData(){
@@ -53,7 +56,7 @@ function renderPost(post){
     newPost.id = `post-${post.id}`
     newImg.innerHTML = `
         <div class="img-overlay"></div>
-        <img src="${post.image}" alt="Image of a cute dog." class="blog-post-image">
+        <img src="${post.image}" alt="Image of a cute dog." class="blog-image">
     `
     newImg.className = 'image-container'
     newContent.textContent = post.content;
@@ -154,17 +157,17 @@ function createNewPost(){
     newPostForm.addEventListener("submit", (e)=>{
         e.preventDefault();
         let newName = document.querySelector("#new-dog-name").value;
-        let newPostImg = document.querySelector("#new-image-container").src;
+        let newImgSrc = document.querySelector("#new-image").src;
         let newPostContent = document.querySelector("#new-content").value;
-        let newDogImg = document.querySelector('#new-image-container')
+        let newImg = document.querySelector('#new-image')
         let postSubmit = document.querySelector('#submit-post')
 
-        const newPostObj = {id: ++latestImgId, name: newName, image: newPostImg, content: newPostContent, likes: 0}
+        const newPostObj = {id: ++latestImgId, name: newName, image: newImgSrc, content: newPostContent, likes: 0}
         //check to see that form is filled out
         newPostObj.name.length == 0 ? alert('Please fill out all form fields.') : renderNewPost(newPostObj)
         newPostForm.reset(); 
 
-        newDogImg.style.display = 'none'
+        newImg.style.display = 'none'
         postSubmit.style.display = 'none'
     })
 }
@@ -194,7 +197,7 @@ function displayBreedOff(e) {
 }
 
 function getBreed(event) {
-    breedName = event.target.querySelector('.blog-post-image').src.split('/')[4]
+    breedName = event.target.querySelector('.blog-image').src.split('/')[4]
     let breedArr = breedName.split('-')
     breedArr.length !== 1 ? breedArr.reverse() : breedArr
     return breedArr.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')

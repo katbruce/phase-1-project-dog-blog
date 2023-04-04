@@ -20,13 +20,6 @@
       "image": "https://images.dog.ceo/breeds/spitz-japanese/tofu.jpg",
       "content": "Wasabi got her name from her love of sushi. She's had so much that at this point, she'll turn her nose up to anything thats not sashimi grade.",
       "likes": 10
-    },
-    {
-      "id": 5,
-      "name": "Ahoy",
-      "image": "https://images.dog.ceo/breeds/sharpei/noel.jpg",
-      "content": "",
-      "likes": 0
     }
   ],
   "comments": [
