@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css" /> 
+    <meta name="google-signin-client_id" content="570936194844-bisuics89mvh8a8lf43sjn40tu8ietfe.apps.googleusercontent.com">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <script type="text/javascript" src="script.js" defer></script>
-    <title>Document</title>
+    <title>Dog Blog</title>
 </head>
 <body>
     <nav class="grid">
@@ -19,34 +23,47 @@
     </nav>
         <hr>
     <div class= "container">   
-    
+         <div class="new-content">
+            <div id="sign-in-container">
+                <!-- OAuth sign-in button -->
+                <div id="g_id_onload" data-client_id="570936194844-bisuics89mvh8a8lf43sjn40tu8ietfe" data-context="signin"
+                    data-ux_mode="popup" data-callback="handleCredentialResponse" data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-text="signin_with"
+                    data-size="large" data-logo_alignment="left">
+                </div>
+            </div><br>
+            <!-- Create blog post form -->
+            <form id="new-post-form">
+                <label for= "new-dog-name"  input type="text">Dog's Name:</label>
+                    <input type = "text" id="new-dog-name"><br><br>
+                <label for="new-content">Post Caption:</label>
+                    <input type= "text" id="new-content"><br><br>
+                <label for="new-image-button">Image Generator:</label>
+                <input type="button" id="new-image-button" name="new-image-button" value="Click here!"><br><br>
+                <div class="image-container" id="new-image-container">
+                    <div class="img-overlay"></div>
+                    <img src="https://images.dog.ceo/breeds/beagle/n02088364_12920.jpg" alt="Randomly generated dog image."
+                        class="blog-image" id="new-image"><br>
+                </div>
+                <input type="submit" id="submit-post">
+            </form>
+        </div>
 
-
-    <div class="new-content"> 
-        <form id="new-post-form">
-            <label for= "new-dog-name"  input type="text">Dog's Name:</label>
-                <input type = "text" id="new-dog-name"><br>
-            <label for="new-content">Caption Your Post:</label><br>
-                <input type= "text" id="new-content"><br>
-            <label for="new-image-button">Use our dog image generator:</label><br>
-            <input type="button" id="new-image-button" name="new-image-button" value="Click here!"><br>
-            <div class="image-container" id="new-image-container">
-                <div class="img-overlay"></div>
-                <img src="https://images.dog.ceo/breeds/beagle/n02088364_12920.jpg" alt="Randomly generated dog image." class="blog-image" id="new-image"><br>
+        <div class="main-content">
+            <h3 id="subtitle"><i>Scroll to read great dog content, and feel free to contribute a post of your own.</i></h3>
+            <hr>
+            <div id="blog-posts">
+                <!-- JS file will load data here -->
             </div>
-            <input type="submit" id="submit-post">
-        </form>
-    </div>
-    
-    <div class="main-content">
-        <h3 id="subtitle"><i>Scroll to read great dog content, and feel free to contribute a post of your own.</i></h3>
-        <hr>
-        <div id="blog-posts">
-
-            
-                
         </div>
     </div>
-    </div>
+    <!-- Scripts for OAuth -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        function handleCredentialResponse(response) {
+           decodeJwtResponse(response.credential);
+        }
+    </script>
 </body>
 </html>
