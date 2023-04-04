@@ -7,6 +7,7 @@ function init () {
     fetchData();
     imageButton();
     createNewPost();
+    darkMode();
 }
 
 function imageButton () {
@@ -111,6 +112,8 @@ function renderCommentForm(postObj){
     `
     commentForm.addEventListener('submit', addComment)
     currentPost.append(commentForm)
+    const lineBreak = document.createElement('hr');
+    currentPost.append(lineBreak);
 }
 
 //updating number of likes
@@ -189,7 +192,7 @@ function renderNewPost(newPost) {
 function displayBreed(e) {
     let overlay = e.target.querySelector('.img-overlay')
     overlay.style.display = 'inherit'
-    overlay.textContent = getBreed(e)
+    overlay.textContent = getBreed(e);
 }
 
 function displayBreedOff(e) {
@@ -202,3 +205,26 @@ function getBreed(event) {
     breedArr.length !== 1 ? breedArr.reverse() : breedArr
     return breedArr.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
 }
+
+
+// function getFact(){
+//     fetch('https://dogapi.dog/api/v2/facts')
+//     .then((res)=> res.json())
+//     .then((data)=>console.log(data.attributes))
+// }
+
+function darkMode(){
+    const darkModeButton = document.querySelector("#dark-mode");
+     const display = document.querySelector("body");
+    darkModeButton.addEventListener("click",()=>{
+        if (darkModeButton.textContent === "DarkMode"){
+            display.style.backgroundColor = '#1b1b1b';
+            display.style.color = 'white';
+            darkModeButton.textContent = "LightMode";
+        }else{
+            display.style.backgroundColor = 'lightcyan';
+            display.style.color = '#1b1b1b';
+            darkModeButton.textContent = "DarkMode";
+        }
+       
+})}
