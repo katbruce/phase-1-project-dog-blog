@@ -8,18 +8,17 @@ html {
     font-size: 100%;
     box-sizing: border-box;
 }
-img {
-    border-radius: 3%;
-    width: 100%;
-    height: fit-content;
-}
 
 body {
     margin: 0px;
     padding: 0px;
     min-height: 100vh;
-    background-color: #ECEBF3;
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    height: 100%;
+    padding-top: 100px;
+    overflow: auto;
+    top: 60px;
+    background-color: lightcyan;
 }
 
 *, *::before, *::after {
@@ -35,6 +34,12 @@ nav {
     padding: auto;
     z-index: 10;
 
+}
+
+img {
+    border-radius: 3%;
+    width: 100%;
+    height: fit-content;
 }
 
 a {
@@ -55,9 +60,7 @@ a::before {
     left: 0px;
     color:#55868C;
 }
-/* a:link{
-    color: rgb(216, 29, 216);
-}     */
+
 a:visited{
     color:#FF579F;
 }
@@ -79,9 +82,7 @@ a:hover {
     text-decoration: none;
     font-size: 1.25rem;
 }
-/* a::after{
-    color:rgb(216, 29, 216);
-} */
+
 nav {
     position: fixed;
     width: 100%;
@@ -94,6 +95,7 @@ nav {
         padding: 20px;
     }       
 }
+
 nav ul {
         list-style-type: none;
         margin: 0px;
@@ -109,8 +111,6 @@ nav ul {
             justify-items: end;
         }    
 }
-
-
 
 .fullwidth {
         grid-column: 1 / 4;
@@ -161,6 +161,7 @@ nav ul {
     max-height: 400px;
 }
 
+/* Blog post css */
 .image-container{
     position: relative;
     display: flex;
@@ -202,6 +203,37 @@ nav ul {
     margin: 10%
 }
 
+.blog-content {
+    width: 90%;
+}
+
+.blog-comments {
+    width: 90%;
+}
+
+.submit-comment {
+    cursor: pointer;
+    background-color: #e0ffff;
+    border: 1px solid black;
+    border-radius: 4px;
+    color: black;
+    text-align: center;
+    width: 15%;
+}
+
+.add-comment {
+    background-color: #e0ffff;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 75%;
+}
+
+hr {
+    height: 2px;
+    margin-right: 10%;
+}
+
+/* New blog form css */
 #new-image{
     display: none;
 }
@@ -216,14 +248,6 @@ nav ul {
     overflow: auto;
 
     
-}
-body
-{
-    height: 100%;
-    padding-top: 100px;
-    overflow: auto;
-    top: 60px;
-    background-color: lightcyan;
 }
 
 #submit-post {
