@@ -51,7 +51,6 @@ function renderPost(post){
     let newContent = document.createElement('p');
     let newImg = document.createElement('div');
     let newName = document.createElement('h3');
-    // let postLikes = document.createElement('div');
     let postComments = document.createElement('div')
 
     newPost.id = `post-${post.id}`
@@ -62,9 +61,11 @@ function renderPost(post){
     `
     newImg.className = 'image-container'
     newContent.textContent = post.content;
-    newName = post.name;
-    // postLikes.id = `post-${post.id}-likes`
+    newContent.className = 'blog-content'
+    newName.textContent = post.name;
+    newName.className = 'blog-title'
     postComments.id = `post-${post.id}-comments`
+    postComments.className = 'blog-comments'
     
     newImg.addEventListener('mouseenter', displayBreed)
     newImg.addEventListener('mouseleave', displayBreedOff)
@@ -109,17 +110,15 @@ function renderComments(commentObj){
 function renderCommentForm(postObj){
     let currentPost = document.querySelector(`#post-${postObj.id}`)
     let commentForm = document.createElement('form')
-    let lineBreak = document.createElement('hr')
     commentForm.className = 'new-comment-form'
     //the setHTML method is experimental and doesn't work with all browsers
     //it works just like innerHTML but sanitizes the input
     commentForm.setHTML(`
-        <br>
-        <input type="text" value="Add comment...">
-        <input type="submit" id="submit-comment"> 
+        <input type="text" class="add-comment" value="Add comment...">
+        <input type="submit" class="submit-comment"><br><br><hr>
     `)
     commentForm.addEventListener('submit', addComment)
-    currentPost.append(commentForm, lineBreak)
+    currentPost.append(commentForm)
 }
 
 //updating number of likes
@@ -255,7 +254,7 @@ function darkMode(){
 //Decodes the JWT (JSON Web Token)
 
 function decodeJwtResponse(data){
-    console.log(parseJwt(data))
+    signIn(parseJwt(data))
 }
 
 function parseJwt (token) {
@@ -270,7 +269,12 @@ function parseJwt (token) {
 
 //Show blog post form after sign-in
 
-function signIn () {
-    console.log('function ran')
-    document.querySelector('#new-post-form').setAttribute("hidden", "")
+function signIn (responseData) {
+    console.log(responseData.email_verified)
+    responseData.email_verified ? showForm() : alert('Please sign in again.')
+}
+
+function showForm () {
+    document.querySelector('#new-post-form').removeAttribute("hidden")
+    document.querySelector('#sign-in-container').setAttribute("hidden", '')
 }
