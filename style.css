@@ -74,13 +74,19 @@ a:hover {
     border-radius: 10px;
     padding: 5px;
 }
-#dark-mode{
-    background-color: #55868C;
-    color:#ECEBF3;
-    border-radius: 10px;
-    padding: 5px;
+#dark-mode {
+    color:#FF579F;
     text-decoration: none;
     font-size: 1.25rem;
+    background: none;
+    border: none;
+}
+#chaos {
+    color:#FF579F;
+    text-decoration: none;
+    font-size: 1.25rem;
+    background: none;
+    border: none;
 }
 
 nav {
@@ -89,7 +95,6 @@ nav {
     background-color: #0C120C;
     margin-bottom: 4rem;
     padding: 10px;
-    font-size: 1.5rem;
     color: ECEBF3;
     @media (min-width: 600px){
         padding: 20px;
@@ -104,11 +109,11 @@ nav ul {
         grid-template-columns: repeat(3, 120px);
         grid-gap: 10px;
         justify-content: right;
-
+        font-size: larger;
         @media (min-width: 600px){
             grid-template-columns: 1fr repeat(4, fit-content(50px));
             grid-gap: 20px;
-            justify-items: end;
+            justify-items: center;
         }    
 }
 
@@ -125,7 +130,7 @@ nav ul {
     align-self: center;
     font: arial;
     align-content: center;
-    color:#AF125A;
+    color:#FF579F;
     text-shadow: 1px 1px 2px #55868C ;
 }
 
@@ -159,6 +164,7 @@ nav ul {
 .new-content img{
     max-width: 100%;
     max-height: 400px;
+    overflow-x:hidden;
 }
 
 /* Blog post css */
@@ -245,7 +251,7 @@ hr {
     width: 60%;
     padding: 12 px;
     float: right;
-    overflow: auto;
+    overflow:visible;
 
     
 }
@@ -254,3 +260,9 @@ hr {
     display: none;
 }
 
+#sign-in-container{
+    
+    justify-items: center;
+    overflow:hidden;
+    
+}

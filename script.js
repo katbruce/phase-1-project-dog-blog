@@ -239,14 +239,14 @@ function darkMode(){
     const darkModeButton = document.querySelector("#dark-mode");
      const display = document.querySelector("body");
     darkModeButton.addEventListener("click",()=>{
-        if (darkModeButton.textContent === "DarkMode"){
+        if (display.style.backgroundColor === 'lightcyan'){
             display.style.backgroundColor = '#1b1b1b';
             display.style.color = 'white';
-            darkModeButton.textContent = "LightMode";
+            darkModeButton.style.color = "white";
         }else{
             display.style.backgroundColor = 'lightcyan';
             display.style.color = '#1b1b1b';
-            darkModeButton.textContent = "DarkMode";
+            darkModeButton.style.color = "#ff579f";
         }
        
 })}
@@ -273,8 +273,11 @@ function signIn (responseData) {
     console.log(responseData.email_verified)
     responseData.email_verified ? showForm() : alert('Please sign in again.')
 }
+//bypass login with continue as guest
+document.querySelector('#guest-sign-in-btn').addEventListener("click",showForm);
 
 function showForm () {
     document.querySelector('#new-post-form').removeAttribute("hidden")
     document.querySelector('#sign-in-container').setAttribute("hidden", '')
 }
+
