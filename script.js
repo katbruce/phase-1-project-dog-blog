@@ -8,6 +8,14 @@ function init () {
     imageButton();
     createNewPost();
     darkMode();
+    eventListeners();
+}
+
+function eventListeners() {
+    //bypass login with continue as guest
+    document.querySelector('#guest-sign-in-btn').addEventListener("click", showForm);
+    //sort dropdown selector
+    document.querySelector('#sort-dropdown').addEventListener('change', sortPreference)
 }
 
 function imageButton () {
@@ -45,7 +53,7 @@ function fetchData(){
 }
 
 //render each post
-function renderPost(post){
+function renderPost(post, b = 1){
     latestImgId = post.id;
     let newPost = document.createElement('div');
     let newContent = document.createElement('p');
@@ -72,7 +80,9 @@ function renderPost(post){
     newImg.addEventListener('mouseenter', displayBreed)
     newImg.addEventListener('mouseleave', displayBreedOff)
     newPost.append(newName, newImg, newContent, postComments);
-    allPosts.prepend(newPost);
+
+    //check to see which sort order to render in
+    b == 1 ? allPosts.prepend(newPost) : allPosts.append(newPost)
 }
 
 function renderLikes (postObj) {
@@ -230,6 +240,42 @@ function getBreed(event) {
     return breedArr.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
 }
 
+function sortPreference (e) {
+    e.target.value == 'newest' ? sortNewest() : fetchSortData()
+}
+
+function sortNewest () {
+    fetchData()
+    console.log('this worked?')
+}
+
+function fetchSortData () {
+    fetch('http://localhost:3000/posts')
+    .then((res)=> res.json())
+    .then((data) => sortPopularity(data))
+}
+
+function sortPopularity (posts) {
+    posts.sort((a, b) => {
+        return b.likes - a.likes
+    })
+    removeChildren(allPosts)
+    posts.forEach((post) => {
+        renderPost(post, 2)
+        renderLikes(post)
+        renderCommentForm(post)
+    })
+    fetchComments()
+}
+
+//remove all posts
+function removeChildren (element) {
+    let child = element.lastElementChild;
+    while (child) {
+      element.removeChild(child);
+      child = element.lastElementChild;
+    }
+}
 
 // function getFact(){
 //     fetch('https://dogapi.dog/api/v2/facts')
@@ -275,8 +321,6 @@ function signIn (responseData) {
     console.log(responseData.email_verified)
     responseData.email_verified ? showForm() : alert('Please sign in again.')
 }
-//bypass login with continue as guest
-document.querySelector('#guest-sign-in-btn').addEventListener("click",showForm);
 
 function showForm () {
     document.querySelector('#new-post-form').removeAttribute("hidden")
