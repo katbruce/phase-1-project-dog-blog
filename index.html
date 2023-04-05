@@ -10,14 +10,15 @@
 
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script type="text/javascript" src="script.js" defer></script>
+    <script src="https://kit.fontawesome.com/d3ebe86ad0.js" crossorigin="anonymous"></script>
     <title>Dog Blog</title>
 </head>
 <body>
-    <nav class="grid">
+    <nav class="nav-bar">
         <ul> 
-            <li><a href="https://github.com/mikecoux/phase-1-project-dog-blog">Github</a></li>
-            <li><button id="dark-mode"><a class= "transition" >DarkMode</a></button></li>
-            <li><a class = "transition" id="other-mode">TBD</a></li>
+            <li><a href="https://github.com/mikecoux/phase-1-project-dog-blog"><i class="fa-brands fa-github"></i></a></li>
+            <li><button id="chaos" id="nav-btn"><i class="fa-solid fa-cat"></i></button></li>
+            <li><button id="dark-mode" id="nav-btn"><i class="fa-solid fa-moon"></i></button></li>
         </ul>
         <h1 class="title"><b>Dog <del>with a</del> Blog</b></h1>
     </nav>
@@ -31,6 +32,9 @@
                 </div>
                 <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-text="signin_with"
                     data-size="large" data-logo_alignment="center">
+                </div>
+                <div id="guest-sign-in">
+                    <button id="guest-sign-in-btn">Continue as Guest</button>
                 </div>
             </div><br>
             <!-- Create blog post form -->
