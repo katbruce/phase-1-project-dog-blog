@@ -33,7 +33,10 @@ nav {
     top: 0;
     padding: auto;
     z-index: 10;
+}
 
+#subtitle {
+    width: 90%;
 }
 
 img {
@@ -142,23 +145,58 @@ nav ul {
 }
 
 .new-content {
-    
     padding: 10px;
     grid-column-start: 1;
     position: fixed;
     background-color: #55868C;
     border-radius: 30px;
     box-shadow: 5px #0C120C;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
 
     height: fit-content;
     width: 25%;
     
     overflow-x: wrap;
     scrollbar-width: 0;
+    color: white;
 }
+
+#g_id_onload {
+    margin: 10px;
+}
+
 .new-content img{
     max-width: 100%;
     max-height: 400px;
+}
+
+#new-image-button {
+    cursor: pointer;
+    background-color: #55868C;
+    border: 1px solid white;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+}
+
+#submit-post {
+    display: none;
+    cursor: pointer;
+    background-color: #55868C;
+    border: 1px solid white;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    margin: 10px;
+}
+
+.new-content-input {
+    background-color: #55868C;
+    border-radius: 4px;
+    border: 1px solid white;
+    width: 75%;
 }
 
 /* Blog post css */
@@ -233,7 +271,6 @@ hr {
     margin-right: 10%;
 }
 
-/* New blog form css */
 #new-image{
     display: none;
 }
@@ -245,12 +282,38 @@ hr {
     width: 60%;
     padding: 12 px;
     float: right;
-    overflow: auto;
-
-    
+    overflow: auto;    
 }
 
-#submit-post {
-    display: none;
+@media only screen and (max-width: 1000px) {
+    .container {
+        grid-template-columns: 100%;
+        column-gap: 60px;
+        row-gap: 60 px;
+        display: flex;
+        flex-direction: column;
+    }
+    .new-content {
+        grid-row-start: 1;
+        width: 80%;
+        position: relative;
+        align-items: center;
+        margin: auto;
+        margin-top: 15%;
+        display: flex;
+        flex-direction: column;
+    }
+    #sign-in-container {
+        align-items: center;
+    }
+    .main-content {
+        grid-column-start: 1;
+        grid-row-start: 2;
+        width: 80%;
+        padding: 12 px;
+        float: right;
+        overflow: auto;   
+        align-items: center; 
+        margin: auto;
+    }
 }
-

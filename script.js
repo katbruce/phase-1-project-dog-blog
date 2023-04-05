@@ -62,6 +62,8 @@ function renderPost(post){
     newImg.className = 'image-container'
     newContent.textContent = post.content;
     newContent.className = 'blog-content'
+    newContent.style.fontStyle = 'italic'
+    newContent.style.fontWeight = 'bold'
     newName.textContent = post.name;
     newName.className = 'blog-title'
     postComments.id = `post-${post.id}-comments`
