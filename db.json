@@ -12,14 +12,14 @@
       "name": "Martin",
       "image": "https://images.dog.ceo/breeds/setter-english/n02100735_7827.jpg",
       "content": "I love this absolute chiller. Adopted him from a shelter and he's basically self trained. 100% best dog ever.",
-      "likes": 15
+      "likes": 14
     },
     {
       "id": 3,
       "name": "Wasabi",
       "image": "https://images.dog.ceo/breeds/spitz-japanese/tofu.jpg",
       "content": "Wasabi got her name from her love of sushi. She's had so much that at this point, she'll turn her nose up to anything thats not sashimi grade.",
-      "likes": 10
+      "likes": 15
     }
   ],
   "comments": [
@@ -47,6 +47,11 @@
       "id": 5,
       "imageId": 3,
       "content": "I'm not sure dogs should have sushi..."
+    },
+    {
+      "imageId": 3,
+      "content": "Add comment...",
+      "id": 6
     }
   ]
 }

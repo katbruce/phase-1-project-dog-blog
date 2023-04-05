@@ -47,42 +47,46 @@ function fetchData(){
 //render each post
 function renderPost(post){
     latestImgId = post.id;
-    let newPost = document.createElement('div')
+    let newPost = document.createElement('div');
     let newContent = document.createElement('p');
     let newImg = document.createElement('div');
     let newName = document.createElement('h3');
-    let postLikes = document.createElement('div');
+    // let postLikes = document.createElement('div');
     let postComments = document.createElement('div')
 
     newPost.id = `post-${post.id}`
     newImg.innerHTML = `
         <div class="img-overlay"></div>
         <img src="${post.image}" alt="Image of a cute dog." class="blog-image">
+        <div class="likes-container" id="post-${post.id}-likes"></div>
     `
     newImg.className = 'image-container'
     newContent.textContent = post.content;
     newName = post.name;
-    postLikes.id = `post-${post.id}-likes`
+    // postLikes.id = `post-${post.id}-likes`
     postComments.id = `post-${post.id}-comments`
     
     newImg.addEventListener('mouseenter', displayBreed)
     newImg.addEventListener('mouseleave', displayBreedOff)
-    newPost.append(newName, newImg, newContent, postLikes, postComments);
+    newPost.append(newName, newImg, newContent, postComments);
     allPosts.prepend(newPost);
 }
 
 function renderLikes (postObj) {
     let likesBlock = document.querySelector(`#post-${postObj.id}-likes`);
-    let numLikes =  document.createElement('span');
-    let likeBtn = document.createElement('button');
     let nLikes = parseInt(postObj.likes);
-    numLikes.className = 'like-count'
-    numLikes.textContent = nLikes;
-    likeBtn.textContent = ("♡");//♥
-    likeBtn.addEventListener("click", upvote);
-
-    likesBlock.append(numLikes, likeBtn)
+    likesBlock.innerHTML = `
+        <div class="triangle-up">△</div><br>
+        <span class="like-count">${nLikes}</span><br>
+        <div class="triangle-down">▽</div>
+    `
+    document.querySelector('.triangle-up').addEventListener("click", upVote);
+    document.querySelector('.triangle-down').addEventListener("click", downVote);
 }
+
+// {/* <span class="like-button-container">
+//             <button class="like-button">♡</button>
+//         </span><br><br></br> */}
 
 function fetchComments () {
     fetch('http://localhost:3000/comments')
@@ -105,22 +109,23 @@ function renderComments(commentObj){
 function renderCommentForm(postObj){
     let currentPost = document.querySelector(`#post-${postObj.id}`)
     let commentForm = document.createElement('form')
+    let lineBreak = document.createElement('hr')
     commentForm.className = 'new-comment-form'
-    //is this a dangerous use of innerHTML?
-    commentForm.innerHTML = `
+    //the setHTML method is experimental and doesn't work with all browsers
+    //it works just like innerHTML but sanitizes the input
+    commentForm.setHTML(`
+        <br>
         <input type="text" value="Add comment...">
-        <input type="submit" id="submit-comment">
-    `
+        <input type="submit" id="submit-comment"> 
+    `)
     commentForm.addEventListener('submit', addComment)
-    currentPost.append(commentForm)
-    const lineBreak = document.createElement('hr');
-    currentPost.append(lineBreak);
+    currentPost.append(commentForm, lineBreak)
 }
 
 //updating number of likes
-function upvote(e){
+function upVote(e){
     let postId = parseInt(e.target.parentNode.id.split('-')[1]);
-    let numLikes = parseInt(e.target.previousElementSibling.textContent);
+    let numLikes = parseInt(e.target.nextElementSibling.nextElementSibling.textContent);
     numLikes++
     let blogObj = {
         id: postId,
@@ -132,7 +137,24 @@ function upvote(e){
         body: JSON.stringify(blogObj)
     })
         .then(res => res.json())
-        .then(data => e.target.previousElementSibling.textContent = data.likes)
+        .then(data => e.target.nextElementSibling.nextElementSibling.textContent = data.likes)
+}
+
+function downVote(e){
+    let postId = parseInt(e.target.parentNode.id.split('-')[1]);
+    let numLikes = parseInt(e.target.previousElementSibling.previousElementSibling.textContent);
+    numLikes--
+    let blogObj = {
+        id: postId,
+        likes: numLikes
+    };
+    fetch (`http://localhost:3000/posts/${postId}`, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(blogObj)
+    })
+        .then(res => res.json())
+        .then(data => e.target.previousElementSibling.previousElementSibling.textContent = data.likes)
 }
 
 function addComment(e){
