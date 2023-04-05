@@ -156,20 +156,43 @@ nav ul {
 
 .image-container{
     position: relative;
+    display: flex;
+    flex-direction: row;
 }
 
 .img-overlay {
     display: none;
-    width: 100%;
+    width: 90%;
     height: 100%;
     border-radius: 3%;
     background: gray;
     opacity: .75;
     position: absolute;
     z-index: 9;
-    text-align: center;
-    padding: 50px 0;
+    justify-content: center;
+    align-items: center;
     color: white;
+}
+
+.blog-image {
+    width: 90%;
+}
+
+.likes-container {
+    margin: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+[class^="triangle"]{
+    cursor: pointer;
+}
+
+
+.like-button-container {
+    margin: 10%
 }
 
 #new-image{
