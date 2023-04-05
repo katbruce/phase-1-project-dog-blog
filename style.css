@@ -130,7 +130,7 @@ nav ul {
 }
 
 .container{
-    margin-top: 15%;
+    margin-top: 5%;
     width: 100%;
 
     border-radius: 3%;
@@ -142,16 +142,23 @@ nav ul {
 }
 
 .new-content {
+    
     padding: 10px;
     grid-column-start: 1;
-    grid-column-end: 1;
     position: fixed;
     background-color: #55868C;
     border-radius: 30px;
     box-shadow: 5px #0C120C;
 
     height: fit-content;
-    max-width: 25%;
+    width: 25%;
+    
+    overflow-x: wrap;
+    scrollbar-width: 0;
+}
+.new-content img{
+    max-width: 100%;
+    max-height: 400px;
 }
 
 .image-container{
@@ -222,3 +229,4 @@ body
 #submit-post {
     display: none;
 }
+
