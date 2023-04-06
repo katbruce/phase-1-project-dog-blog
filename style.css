@@ -112,12 +112,16 @@ nav ul {
         grid-template-columns: repeat(3, 120px);
         grid-gap: 10px;
         justify-content: right;
-        font-size: larger;
+        font-size: 4rem;
+        top:0;
         @media (min-width: 600px){
             grid-template-columns: 1fr repeat(4, fit-content(50px));
             grid-gap: 20px;
             justify-items: center;
         }    
+}
+li :hover{
+    font-size: x-large;
 }
 
 .fullwidth {
@@ -346,7 +350,13 @@ hr {
 }
 
 #sign-in-container{
-    
+    width: 80%;
+    position: relative;
+    align-items: center;
+    margin: auto;
     justify-items: center;
     overflow:hidden;
+    align-content: center;
+    padding: auto;
 }
+

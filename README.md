@@ -1,41 +1,28 @@
-TODO: update this to accurately explain our phase 1 project and edit using markdown syntax to look nice and professional
+# Dog Blog
 
-Dog Blog
+## Overview
+Dog Blog is a social media platform allowing users to like, dislike and comment on dog images, along with posting their own with images sourced from Random Dog API. Users can login using Google Authentication or as a guest user. 
 
-Dog Blog is a social media platform allowing users to like and comment on dog images, along with posting their own using Random Dog API.
+## Features
+- sign in with Google 
+- dynamically upvote and downvote
+- commenting
+- night mode
+- desktop and mobile friendly
 
-Overview:
-Briefly introduce the project
-What your application does,
-Why you used the technologies you used,
-Some of the challenges you faced and features you hope to implement in the future.
+## Installation
+Dog blog is run solely on local servers. To run, two commands are needed to run the site with Google sign in, and it must be in the project working directory. 
 
-Installation:
-Provide a step-by-step description of how to get the development environment set and running.
+In one terminal, paste into the command line: 
+>json-server --watch db.json --routes routes.json 
+>(this loads the server in port 3000)
+In a seperate terminal, without closing the previous port, paste into the command line: 
+>python3 -m http.server 
+>(this loads an html server on port 8000)
 
-So, think about specifying the pre-requisites needed before attempting to install your project. Just providing a link to the install page of each pre-requirement may be a great help for your reader. In the NodeJS example above:
-
-Documentation
-In addition to the basic first steps/getting started the reader may want to dive into all the functionality of the project. It may depend on the kind of project:
-
-For an application it may describe how to use it, the options, how to set it up for different use cases.
-For a library, framework it may describe API, methods, classes, or some advanced examples.
-
-Provide instructions and examples so users/contributors can use the project. This will make it easy for them in case they encounter a problem – they will always have a place to reference what is expected.
-
-You can also make use of visual aids by including materials like screenshots to show examples of the running project and also the structure and design principles used in your project.
-
-//insert wireframe here
-//if we can figure out how to get a gif then maybe one of those showing 
-
-Acknowledgements:
-list your collaborators/team members. You should also include links to their GitHub profiles 
-
-Also, if you followed tutorials or referenced a certain material that might help the user to build that particular project, include links to those here as well.
-
-License
-The last section of the README typically is reserved for the copyright and license.
-
-Though, at a first glance, you may think that this is not important, the truth is that it setting up a license is key as it helps other developers to understand the limits of the use of your software.
-
-Here you have a list of open source licenses. You should have a rough idea of what each license means. Personally, I usually choose between GPL3 and MIT.
+Lastly, navigate to http://localhost:8000 in your browser. 
+---
+## Acknowledgements
+Project created for our Phase 1 Project for Flatiron School Denver. Team members were:
+[Mike Marcoux](https://github.com/mikecoux)
+[Kathryn Bruce](https://github.com/katbruce)
