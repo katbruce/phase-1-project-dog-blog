@@ -131,6 +131,7 @@ function renderCommentForm(postObj){
 
 //updating number of likes
 function upVote(e){
+    console.log('I was clicked')
     let postId = parseInt(e.target.parentNode.id.split('-')[1]);
     let numLikes = parseInt(e.target.nextElementSibling.nextElementSibling.textContent);
     numLikes++
@@ -148,6 +149,7 @@ function upVote(e){
 }
 
 function downVote(e){
+    console.log('I was clicked')
     let postId = parseInt(e.target.parentNode.id.split('-')[1]);
     let numLikes = parseInt(e.target.previousElementSibling.previousElementSibling.textContent);
     numLikes--
