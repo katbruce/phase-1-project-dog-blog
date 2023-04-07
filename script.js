@@ -1,4 +1,4 @@
-const allPosts = document.querySelector("#blog-posts"); //can maybe declare in the function
+const allPosts = document.querySelector("#blog-posts");
 let latestImgId;
 
 document.addEventListener('DOMContentLoaded', init())
@@ -32,9 +32,9 @@ function randomImg(image) {
     let newDogImg = document.querySelector('#new-image')
     let postSubmit = document.querySelector('#submit-post')
     let imgOverlay = document.querySelector('#new-image-container')
-    newDogImg.style.display = 'inherit'
+    newDogImg.style.display = 'flex'
     newDogImg.src = image
-    postSubmit.style.display = 'inherit'
+    postSubmit.style.display = 'flex'
     imgOverlay.addEventListener('mouseenter', displayBreed)
     imgOverlay.addEventListener('mouseleave', displayBreedOff)
 }
@@ -96,10 +96,6 @@ function renderLikes (postObj) {
     document.querySelector('.triangle-up').addEventListener("click", upVote);
     document.querySelector('.triangle-down').addEventListener("click", downVote);
 }
-
-// {/* <span class="like-button-container">
-//             <button class="like-button">♡</button>
-//         </span><br><br></br> */}
 
 function fetchComments () {
     fetch('http://localhost:3000/comments')
@@ -245,8 +241,8 @@ function sortPreference (e) {
 }
 
 function sortNewest () {
+    removeChildren(allPosts)
     fetchData()
-    console.log('this worked?')
 }
 
 function fetchSortData () {
@@ -268,7 +264,7 @@ function sortPopularity (posts) {
     fetchComments()
 }
 
-//remove all posts
+//remove all posts before re-rendering when the sort feature is used
 function removeChildren (element) {
     let child = element.lastElementChild;
     while (child) {
@@ -276,12 +272,6 @@ function removeChildren (element) {
       child = element.lastElementChild;
     }
 }
-
-// function getFact(){
-//     fetch('https://dogapi.dog/api/v2/facts')
-//     .then((res)=> res.json())
-//     .then((data)=>console.log(data.attributes))
-// }
 
 function darkMode(){
     const darkModeButton = document.querySelector("#dark-mode");
@@ -300,7 +290,6 @@ function darkMode(){
 })}
 
 //Decodes the JWT (JSON Web Token)
-
 function decodeJwtResponse(data){
     signIn(parseJwt(data))
 }
@@ -316,15 +305,14 @@ function parseJwt (token) {
 }
 
 //Show blog post form after sign-in
-
 function signIn (responseData) {
     console.log(responseData.email_verified)
     responseData.email_verified ? showForm() : alert('Please sign in again.')
 }
 
 function showForm () {
-    document.querySelector('#new-post-form').removeAttribute("hidden")
-    document.querySelector('#sign-in-container').setAttribute("hidden", '')
+    document.querySelector('#new-post-form').style.display = 'inline-flex'
+    document.querySelector('#sign-in-container').style.display = 'none'
 }
 
 

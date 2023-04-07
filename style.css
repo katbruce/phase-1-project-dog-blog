@@ -35,6 +35,35 @@ nav {
     z-index: 10;
 }
 
+/* should remove one of these nav styles */
+nav {
+    position: fixed;
+    width: 100%;
+    background-color: #0C120C;
+    margin-bottom: 4rem;
+    padding: 10px;
+    color: ECEBF3;
+    @media (min-width: 600px){
+        padding: 20px;
+    }       
+}
+
+#nav-bar-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 30px;
+}
+
+.title {
+    align-self: center;
+    font: arial;
+    align-content: center;
+    color:#FF579F;
+    text-shadow: 1px 1px 2px #55868C;
+    cursor:default;
+}
+
 #subtitle {
     width: 90%;
 }
@@ -83,25 +112,15 @@ a:hover {
     font-size: 1.25rem;
     background: none;
     border: none;
+    cursor: pointer;
 }
+
 #chaos {
     color:#FF579F;
     text-decoration: none;
     font-size: 1.25rem;
     background: none;
     border: none;
-}
-
-nav {
-    position: fixed;
-    width: 100%;
-    background-color: #0C120C;
-    margin-bottom: 4rem;
-    padding: 10px;
-    color: ECEBF3;
-    @media (min-width: 600px){
-        padding: 20px;
-    }       
 }
 
 nav ul {
@@ -155,31 +174,55 @@ li :hover{
 }
 
 .new-content {
-    padding: 10px;
+    margin-left: 30px;
     grid-column-start: 1;
     position: fixed;
     background-color: #55868C;
     border-radius: 30px;
     box-shadow: 5px #0C120C;
-    margin: 10px;
-    justify-content: center;
-    align-items: center;
-
     height: fit-content;
     width: 25%;
-    
     overflow-x: wrap;
     scrollbar-width: 0;
     color: white;
 }
 
-#g_id_onload {
+#sign-in-container{
+    width: 80%;
+    position: relative;
+    margin: auto;
+    margin-top: 10px;
+    overflow:hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+#g_id_signin {
     margin: 10px;
 }
 
-.new-content img{
-    max-width: 100%;
-    max-height: 400px;
+#guest-sign-in-btn {
+    cursor: pointer;
+    background-color: #55868C;
+    border: 1px solid white;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+}
+
+#new-post-form {
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 20px;
+}
+
+#new-image-container{
+    max-height: 300px;
     overflow-x:hidden;
 }
 
@@ -190,35 +233,36 @@ li :hover{
     border-radius: 4px;
     color: white;
     text-align: center;
+    max-width: 35%;
+}
+
+#new-image{
+    display: none;
+    width: 100%;
+}
+
+#new-image-overlay {
+    width: 100%;
 }
 
 #submit-post {
     display: none;
+    max-width: 90px;
     cursor: pointer;
     background-color: #55868C;
     border: 1px solid white;
     border-radius: 4px;
     color: white;
     text-align: center;
-    margin: 10px;
 }
 
 .new-content-input {
     background-color: #55868C;
     border-radius: 4px;
     border: 1px solid white;
-    width: 75%;
+    padding: 5px;
+    color: white;
 }
-
-/* Blog post css */
-/* #sort-container {
-    display: flex;
-} */
-
-/* #sort-label {
-    display: flex;
-    justify-self: end;
-} */
 
 #sort-dropdown {
     cursor: pointer;
@@ -316,6 +360,7 @@ hr {
     overflow: auto;    
 }
 
+/* styling for mobile */
 @media only screen and (max-width: 1000px) {
     .container {
         grid-template-columns: 100%;
@@ -347,16 +392,5 @@ hr {
         align-items: center; 
         margin: auto;
     }    
-}
-
-#sign-in-container{
-    width: 80%;
-    position: relative;
-    align-items: center;
-    margin: auto;
-    justify-items: center;
-    overflow:hidden;
-    align-content: center;
-    padding: auto;
 }
 

@@ -14,13 +14,13 @@
 </head>
 <body>
     <nav class="nav-bar">
-        <ul> 
+        <ul id="nav-bar-links"> 
             <li><a href="https://github.com/mikecoux/phase-1-project-dog-blog"><i class="fa-brands fa-github"></i></a></li>
             <li><button id="dark-mode" id="nav-btn"><i class="fa-solid fa-moon"></i></button></li>
         </ul>
         <h1 class="title"><b>Dog <del>with a</del> Blog</b></h1>
     </nav>
-        <hr>
+    <hr>
     <div class= "container">   
         
          <div class="new-content">
@@ -29,27 +29,29 @@
                 <div id="g_id_onload" data-client_id="570936194844-bisuics89mvh8a8lf43sjn40tu8ietfe" data-context="signin"
                     data-ux_mode="popup" data-callback="handleCredentialResponse" data-auto_prompt="false">
                 </div>
-                <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-text="signin_with"
+                <div class="g_id_signin" data-type="normal" data-shape="rectangular" data-theme="outline" data-text="signin_with"
                     data-size="large" data-logo_alignment="center">
-                </div>
+                </div><br>
                 <div id="guest-sign-in">
                     <button id="guest-sign-in-btn">Continue as Guest</button>
                 </div>
             </div><br>
             <!-- Create blog post form -->
-            <form id="new-post-form" hidden>
+            <form id="new-post-form">
                 <label for= "new-dog-name"  input type="text">Dog's Name:</label>
                     <input type="text" id="new-dog-name" class="new-content-input"><br><br>
                 <label for="new-content">Post Caption:</label>
                     <input type= "text" id="new-content" class="new-content-input"><br><br>
-                <label for="new-image-button">Image Generator:</label>
-                <input type="button" id="new-image-button" name="new-image-button" value="Click Here!"><br><br>
+                <div id="new-image-btn-container">
+                    <label for="new-image-button">Image Generator:</label>
+                    <input type="button" id="new-image-button" name="new-image-button" value="Click Here!"><br><br>
+                </div>
                 <div class="image-container" id="new-image-container">
-                    <div class="img-overlay"></div>
+                    <div class="img-overlay" id="new-image-overlay"></div>
                     <img src="https://images.dog.ceo/breeds/beagle/n02088364_12920.jpg" alt="Randomly generated dog image."
                         class="blog-image" id="new-image"><br>
-                </div>
-                <input type="submit" id="submit-post">
+                </div><br>
+                <input type="submit" id="submit-post" value="Submit Post">
             </form>
         </div>
 
