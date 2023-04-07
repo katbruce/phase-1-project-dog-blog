@@ -20,6 +20,13 @@
       "image": "https://images.dog.ceo/breeds/spitz-japanese/tofu.jpg",
       "content": "Wasabi got her name from her love of sushi. She's had so much that at this point, she'll turn her nose up to anything thats not sashimi grade.",
       "likes": 14
+    },
+    {
+      "id": 4,
+      "name": "Gus",
+      "image": "https://images.dog.ceo/breeds/eskimo/n02109961_11224.jpg",
+      "content": "Gus is an ex-police dog now enjoying the retired life after 5 years on the force. His biggest accomplishment was sniffing out El Chapo after he escaped from prison the first time.",
+      "likes": 6
     }
   ],
   "comments": [
@@ -47,6 +54,16 @@
       "id": 5,
       "imageId": 3,
       "content": "I'm not sure dogs should have sushi..."
+    },
+    {
+      "imageId": 4,
+      "content": "Absolute hero!",
+      "id": 6
+    },
+    {
+      "imageId": 4,
+      "content": "Thank you for your service, Gus.",
+      "id": 7
     }
   ]
 }
